@@ -1,0 +1,11 @@
+cache/
+./idea
+.vscode/
+.env
+.code
+push.sh
+.obsidian/
+resources/blog_docs/.vscode
+.DS_Store
+resources/blog_docs/.DS_Store
+resources/blog_docs/Excalidraw/
