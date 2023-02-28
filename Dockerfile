@@ -1,8 +1,4 @@
-FROM golang:1.19-alpine
-
-ENV api_key=""
-
-RUN export GOPRIVATE=github.com/homeinchina/blog
+FROM golang:alpine
 
 WORKDIR /app
 

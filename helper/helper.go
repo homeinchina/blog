@@ -2,13 +2,12 @@ package helper
 
 import (
 	"fmt"
-	"github.com/cjyzwg/forestblog/config"
-	"github.com/cjyzwg/forestblog/models"
 	"html/template"
 	"log"
 	"net/http"
 	"os"
-	"os/exec"
+
+	"github.com/cjyzwg/forestblog/models"
 )
 
 func HtmlTemplate(fileName string) (*template.Template, error) {
@@ -61,29 +60,9 @@ func UpdateArticle() {
 		fmt.Println(deleteCacheErr)
 	}
 
-	blogPath := config.CurrentDir + "/" + config.Cfg.DocumentPath
-
-	_, err := exec.LookPath("git")
-
-	if err != nil {
-		fmt.Println("请先安装git并克隆博客文档到" + blogPath)
-		log.Fatalf("git cmd failed with %s\n", err)
-	}
-
-	cmd := exec.Command("git", "pull")
-	cmd.Dir = blogPath
-
-	out, err := cmd.CombinedOutput()
-	if err != nil {
-		log.Fatalf("cmd.Run() failed with %s\n", err)
-	}
-
-	log.Println("UpdateArticle:" + string(out))
 	//生成缓存
-	_, err = models.GetMarkdownListByCache("/")
+	_, err := models.GetMarkdownListByCache("/")
 
-	//生成缓存
-	// _, err := models.GetMarkdownListByCache("/")
 	if err != nil {
 		log.Fatalf("生成缓存失败： %s\n", err)
 	}
